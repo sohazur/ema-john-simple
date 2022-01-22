@@ -2,18 +2,19 @@
   text-align: center;
 }
 .logo {
-  height: 50px;
+  height: 3.125rem;
+  margin: 1rem 0;
 }
 .header nav {
   background-color: black;
-  line-height: 40px;
+  line-height: 2.5rem;
 }
 .header nav a {
   text-decoration: none;
   color: white;
-  margin-right: 20px;
-  padding: 5px;
-  font-size: 20px;
+  margin-right: 1.25rem;
+  padding: 0.313rem;
+  font-size: 1.25rem;
 }
 .header nav a:hover {
   background-color: lightgray;
