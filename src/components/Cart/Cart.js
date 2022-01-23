@@ -12,7 +12,6 @@ const Cart = (props) => {
     total += product.price * product.quantity;
     totalQuantity += product.quantity;
   }
-  console.log(totalQuantity);
   const shipping = total === 0 ? 0 : 15;
   const tax = (total + shipping) * 0.05;
   const grandTotal = total + shipping + tax;
