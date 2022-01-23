@@ -3,16 +3,33 @@ import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 import "../../utilities/fakedb";
-import { addToDb } from "../../utilities/fakedb";
+import { addToDb, getStoredCart } from "../../utilities/fakedb";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+
   useEffect(() => {
     fetch("./products.JSON")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        setProducts(data);
+      });
   }, []);
+
+  useEffect(() => {
+    if (products.length) {
+      console.log("Shopping cart local storage");
+      const savedCart = getStoredCart();
+      const storeCart = [];
+      for (const key in savedCart) {
+        const addedProduct = products.find((product) => product.key === key);
+        storeCart.push(addedProduct);
+      }
+      setCart(storeCart);
+    }
+  }, [products]);
+
   const handleAddToCart = (product) => {
     const newCart = [...cart, product];
     setCart(newCart);
