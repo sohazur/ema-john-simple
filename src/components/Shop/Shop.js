@@ -19,12 +19,15 @@ const Shop = () => {
 
   useEffect(() => {
     if (products.length) {
-      console.log("Shopping cart local storage");
       const savedCart = getStoredCart();
       const storeCart = [];
       for (const key in savedCart) {
         const addedProduct = products.find((product) => product.key === key);
-        storeCart.push(addedProduct);
+        if (addedProduct) {
+          const quantity = savedCart[key];
+          addedProduct.quantity = quantity;
+          storeCart.push(addedProduct);
+        }
       }
       setCart(storeCart);
     }
